@@ -1,7 +1,9 @@
 package com.swjtu.deanstar.util;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.util.TypedValue;
+import android.view.WindowManager;
 
 /**
  * Created by yhp5210 on 2017/3/6.
@@ -62,7 +64,7 @@ public class DisplayUtil {
      * @param context
      * @return
      */
-    protected int dp2px(int dp,Context context){
+    public static int dp2px(int dp,Context context){
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
         dp,context.getResources().getDisplayMetrics());
     }
@@ -73,9 +75,18 @@ public class DisplayUtil {
      * @param context
      * @return
      */
-    protected int sp2px(int sp,Context context){
+    public static int sp2px(int sp,Context context){
 
         return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 sp,context.getResources().getDisplayMetrics());
+    }
+
+    public static Point getScreenSize(Context context){
+
+        Point size = new Point();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getSize(size);
+        return size;
+
     }
 }
